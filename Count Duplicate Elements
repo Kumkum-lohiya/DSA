@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+void insert(int arr[],int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+}
+void display(int arr[],int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	{
+		cout<<arr[i]<<endl;
+	}
+}
+int CountDuplicateArray(int arr[],int n)
+{
+	int count=0;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=i+1;j<n;j++)
+		{  
+			if(arr[i] == arr[j])
+			{
+				count++;
+			}
+		}
+	}
+	return count;
+}
+int main()
+{
+	int n;
+	cout<<"Enter the size of the array :"<<endl;
+	cin>>n;
+	
+	int arr[n];
+	cout<<"Enter the element of the array :"<<endl;
+	insert(arr,n);
+	cout<<"Display the element of the array :"<<endl;
+	display(arr,n);
+	cout<<"Total duplicate element found in array are :"<<CountDuplicateArray(arr,n);
+}
