@@ -1,0 +1,39 @@
+#include<iostream>
+#define MAX 5
+using namespace std;
+void Insert(int arr[]){
+	for(int i =0;i<MAX;i++)
+	{
+		cin>>arr[i];
+	}
+}
+void Display(int arr[])
+{
+	for(int i =0;i<MAX;i++)
+	{
+		cout<<"The "<<i+1<<" Element of array is "<<arr[i]<<endl;
+		
+	}
+}
+
+void Copied(int brr[],int arr[])
+{
+	for(int i =0;i<MAX;i++)
+	{
+		brr[i] = arr[i];
+		cout<<brr[i]<<" ";
+	}
+}
+
+int main()
+{
+    int arr[MAX],i,brr[MAX];
+	 cout<<"Enter the element of array "<<endl;
+	 Insert(arr);
+	 cout<<"Display the Element of array "<<endl;
+	 Display(arr);
+
+	 cout<<"Element Copied into Second array are  "<<endl;
+	 Copied(brr,arr);
+
+}
