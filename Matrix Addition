@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+void insert(int a[][100],int n)
+{
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++)
+		{
+			cout<<"element-["<<i<<"],["<<j<<"]"<<":";
+			cin>>a[i][j];
+		}
+	}
+}
+void display(int arr[][100],int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			cout<<arr[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+void Addition(int arr1[][100],int arr2[][100],int n)
+{
+	for(int i =0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+		   cout<<arr1[i][j] + arr2[i][j];
+		}
+		cout<<endl;
+	}
+}
+int main()
+{
+	int n;
+	cout<<"Enter the size of square matrix (less than 5) :"<<endl;
+	cin>>n;
+	int arr1[100][100];
+	int arr2[100][100];
+	cout<<"Input the element in first matrix :"<<endl;
+    insert(arr1,n);
+	
+	cout<<"Input the element in second matrix :"<<endl;
+    insert(arr2,n);
+	
+	cout<<"The First matrix :"<<endl;
+	display(arr1,n);
+	
+	cout<<"The Second matrix :"<<endl;
+	display(arr2,n);
+	
+	
+	cout<<"The Addition of Two matrix :"<<endl;
+	Addition(arr1,arr2,n);
+
+	
+	return 0;
+}
