@@ -71,7 +71,7 @@ int main()
 	cout<<"The matrix is :"<<endl;
 	display(arr,n,m);
 	
-	cout<<"Addition of the right diagonal elements is :"<<endl;
+	cout<<"Addition of the left diagonal elements is :"<<endl;
 	cout<<leftDiagonalSum(arr,n,m);
 	
 	return 0;
