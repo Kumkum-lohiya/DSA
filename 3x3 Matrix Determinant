@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+void insert(int a[][100], int m)  // 2D arrays need fixed column size
+{
+    for(int i = 0; i < m; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+        	cout << "Element - [" << i << "][" << j << "]: ";
+            cin >> a[i][j];
+        }
+    }
+}
+
+void display(int a[][100], int m)
+{
+    for(int i = 0; i < m; i++)  // correct 0-based indexing
+    {
+        for(int j = 0; j < m; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+
+
+int main()
+{
+ 
+    
+    int a[100][100];  // fixed size array
+
+    cout << "Enter the elements of the array:\n";
+    insert(a, 3);
+    
+    cout << "The array is:\n";
+    display(a, 3);
+    
+    int determinant = a[0][0]*(a[1][1]*a[2][2] - a[1][2]*a[2][1]) 
+                - a[0][1]*(a[1][0]*a[2][2] - a[1][2]*a[2][0]) 
+                + a[0][2]*(a[1][0]*a[2][1] - a[1][1]*a[2][0]);
+                
+    cout<<"\nThe determinant of 3x3 Matrix is :"<<determinant<<endl;
+	            
+    
+    
+
+    return 0;
+}
