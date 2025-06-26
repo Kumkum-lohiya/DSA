@@ -1,0 +1,85 @@
+#include<iostream>
+using namespace std;
+void insert(int arr[][100],int n,int m)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+		   cout<<"element -["<<i<<"],["<<j<<"] :";
+		   cin>>arr[i][j];	
+		}
+    }
+}
+
+void display(int arr[][100],int n,int m)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<m;j++)
+		{
+			cout<<arr[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+
+void compare(int a1[][100],int n1,int m1,int a2[][100],int n2,int m2)
+{
+	int i,j,count;
+	if(n1 == n2 && m1 == m2)
+	{
+		cout<<"The Matrices can be compared "<<endl;
+		for(i=0;i<n1;i++)
+		{
+			for(j=0;j<m1;j++)
+			{
+				if(a1[i][j] == a2[i][j])
+				{
+				  count++;	
+				}
+			}
+		}
+		if(count == n1*m1)
+		{
+			cout<<"Two matrices are equal."<<endl;
+		}
+		else {
+			cout<<"Two matrices are not equal."<<endl;
+		}
+	}
+	else {
+		cout<<"The Matrices can not  be compared "<<endl;
+	}
+		
+}
+
+int main()
+{
+	int n1,m1,n2,m2;
+	cout<<"Enter the rows and columns of the first matrix :"<<endl;
+	cin>>n1>>m1;
+	
+	cout<<"Enter the rows and columns of the second matrix :"<<endl;
+	cin>>n2>>m2;
+	
+	int a1[100][100];
+	int a2[100][100];
+	cout<<"Enter the elements in first matrix :"<<endl;
+	insert(a1,n1,m1);
+	
+	cout<<"Enter the elements in second matrix :"<<endl;
+	insert(a2,n2,m2);
+	
+	cout<<"The first matrix is :"<<endl;
+	display(a1,n1,m1);
+	
+	cout<<"The second  matrix is :"<<endl;
+	display(a2,n2,m2);
+	
+	compare(a1,n1,m1,a2,n2,m2);
+	
+	return 0;
+}
