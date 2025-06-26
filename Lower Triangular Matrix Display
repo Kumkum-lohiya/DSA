@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+void insert(int arr[][100],int n)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+		   cout<<"element -["<<i<<"],["<<j<<"] :";
+		   cin>>arr[i][j];	
+		}
+    }
+}
+
+void display(int arr[][100],int n)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<arr[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}
+
+void lowermatrix(int arr[][100],int n)
+{
+	int i,j;
+	for(i=1;i<n;i++)
+	{
+		for(j=0;j<=i-1;j++)
+		{
+			arr[i][j] = 0;
+		}
+	}
+}
+
+int main()
+{
+	int n;
+	cout<<"Enter the size of square matrix :"<<endl;
+	cin>>n;
+	
+	int arr[100][100];
+	cout<<"Enter the elements of the matrix :"<<endl;
+	insert(arr,n);
+	
+	cout<<"The matrix is :"<<endl;
+	display(arr,n);
+	
+	lowermatrix(arr,n);
+	
+	cout<<"Setting zero in lower triangular matrix :"<<endl;
+	display(arr,n);
+	
+	
+	return 0;
+}
