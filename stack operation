@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+#define size 100
+class stack{
+	private:
+	int top;
+	int a[size];
+	public :
+		stack()
+		{
+			top =-1;
+		}
+		
+		void push()
+		{
+			if(top == size -1)
+			cout<<"\nStack is overflow "<<endl;
+			else 
+			{
+				top = top +1;
+				cout<<"Enter the element :"<<endl;
+				cin>>a[top];
+				}			
+		}
+		
+		void pop()
+		{
+			if(top == -1)
+			cout<<"\nStack is underflow "<<endl;
+			else {
+				cout<<" The element is "<<a[top];
+				top--;
+			}	
+		}
+		
+		void peek()
+		{
+			if(top == -1)
+			cout<<"\nStack is underflow "<<endl;
+			else {
+				cout<<"The peeked element is "<<a[top]<<endl;
+			}
+		}
+		
+		void display()
+		{
+			cout<<" The element in stack are :"<<endl;
+			for(int i=0;i<=top;i++)
+			{
+				cout<<a[i]<<" ";
+			}
+			
+		  }  
+};
+int main()
+{
+	int choice;
+	
+	stack s;
+	
+	while(1)
+	{
+		cout<<"\n\n1.push\n2.pop\n3.peek\n4.display\n"<<endl;
+		cout<<"Enter the choice "<<endl;
+		cin>>choice;
+		
+		switch(choice)
+		{
+			case 1  : s.push();break;
+			case 2  : s.pop();break;
+			case 3  : s.peek();break;
+			case 4  : s.display();break;
+			default : cout<<"invalid choice";break;			
+		}
+	}
+	return 0;
+}
