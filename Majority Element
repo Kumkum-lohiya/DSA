@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+void insert(int a[],int n)
+{
+	for(int i = 0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+}
+
+void Majority(int a[], int n)
+{
+    int precount = 0;
+    for(int i = 0; i < n; i++)
+    {
+        int count = 1;
+        for(int j = i + 1; j < n; j++)
+        {
+            if(a[i] == a[j])
+            {
+                count++;
+            }
+        }
+        if(count > precount)
+        {
+            precount = count;
+        }
+    }
+
+    if(precount > n/2)
+    {
+        cout << "There is a Majority Element in the given array.";
+    }
+    else
+    {
+        cout << "There is no Majority Element in the given array.";
+    }
+}
+
+int main()
+{
+	int n,sum;
+	cout<<"Enter the size of array :"<<endl;
+	cin>>n;
+	
+	int a[1000];
+	cout<<"Enter the elements of array :"<<endl;
+	insert(a,n);
+	
+	Majority(a,n);
+	
+	
+	
+	
+	return 0;
+	
+}
