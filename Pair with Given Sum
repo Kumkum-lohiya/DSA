@@ -1,0 +1,51 @@
+#include<iostream>
+using namespace std;
+void insert(int arr[],int n)
+{
+	for(int i = 0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+}
+void PairSum(int arr[],int n,int sum)
+{
+	int index1 ,index2;
+	bool pairsum = false;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			if((arr[i] + arr[j] ) == sum)
+			{
+				pairsum = true;
+				index1 = i;
+				index2 = j;
+				break;
+			}
+		}
+	}
+	if(pairsum)
+	{
+		cout<<"Pair of elements can make the given sum by the value of index "<<index1<<" and "<<index2;
+	}
+	else{
+		cout<<"NO pair sum is found "<<endl;
+	}
+}
+int main()
+{
+	int n,sum;
+	cout<<"Enter the size of array :"<<endl;
+	cin>>n;
+	
+	int a[1000];
+	cout<<"Enter the elements of array :"<<endl;
+	insert(a,n);
+	
+	cout<<" The given sum is :";
+	cin>>sum;
+	
+	PairSum(a,n,sum);
+	return 0;
+	
+}
