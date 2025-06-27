@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+
+void insert(int a[],int n)
+{
+	int i;
+	for(i=0; i<n; i++)
+	{
+		cin>>a[i];
+	}
+}
+
+void display(int a[],int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		cout<<a[i]<<" ";
+	}
+}
+void ceiling(int a[],int n,int x)
+{
+	int i;
+	for(i=0; i<n; i++)
+	{
+		if(a[i] > x)
+		{
+			cout<<a[i];
+			break;
+		}
+	}
+}
+void bubblesort(int a[],int n)
+{
+	int i,j;
+	for(i=0;i<n-1;i++)
+	{
+		for(j=0;j<n-i-1;j++)
+		{
+			if(a[j] > a[j+1])
+			{
+				int temp = a[j];
+				a[j] = a[j+1];
+				a[j+1] = temp;
+			}
+		}
+	}
+}
+
+int main()
+{
+	int n;
+	cout<<"Enter the size of an array :"<<endl;
+	cin>>n;
+	
+	int a[1000];
+	cout<<"Enter the elements of array :"<<endl;
+	insert(a,n);
+	
+	bubblesort(a,n);
+	
+	cout<<"The given array is :"<<endl;
+	display(a,n);
+	int x;
+	cout<<"Enter number to find its ceiling in given array :"<<endl;
+	cin>>x;
+	
+	cout<<"The ceiling element of "<<x<<" is :";
+	ceiling(a,n,x);
+	
+	return 0;
+	
+	
+}
