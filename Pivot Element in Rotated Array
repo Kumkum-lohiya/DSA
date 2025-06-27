@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+void insert(int arr[],int n)
+{
+	for(int i = 0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+}
+void sort(int a[],int n)
+{
+	int i,j;
+	for(i=0;i<n-1;i++)
+	{
+		for(j=0;j<n-i-1;j++)
+		{
+			if(a[j] > a[j+1])
+			{
+				int temp = a[j];
+				a[j] = a[j+1];
+				a[j+1] = temp;
+			}
+		}
+	}
+}
+
+int main()
+{
+	int n,sum;
+	cout<<"Enter the size of array :"<<endl;
+	cin>>n;
+	
+	int a[1000];
+	cout<<"Enter the elements of array :"<<endl;
+	insert(a,n);
+	
+	sort(a,n);
+	cout<<"The pivot element in the array is : ";
+	cout<<a[0]<<endl;
+	
+	return 0;
+	
+}
