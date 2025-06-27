@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+void insert(int a[],int n)
+{
+	for(int i = 0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+}
+void OddTimes(int a[],int n)
+{
+	
+	for(int i=0;i<n;i++)
+	{
+        bool isCounted = false;
+		for(int k =0;k<n;k++)
+		{
+			if(a[i] == a[k])
+			{
+				isCounted = true;
+				break;
+			}
+		}
+		if(isCounted)
+		continue;
+		int count =0;
+		for(int j=0;j<n;j++)
+		{
+			if(arr[i] == arr[j])
+			count ++;
+		}
+		if(count%2 != 0)
+		{
+			cout<<"The element odd number of times is :"<<arr[i]<<endl;
+		}
+		else cout<<" No element is odd number of times :"<<endl;
+		
+		
+		
+	}
+}
+int main()
+{
+	int n,sum;
+	cout<<"Enter the size of array :"<<endl;
+	cin>>n;
+	
+	int a[1000];
+	cout<<"Enter the elements of array :"<<endl;
+	insert(a,n);
+	
+	cout<<"The element odd number of times is/are : ";
+    OddTimes(a,n);
+	
+	
+	return 0;
+	
+}
