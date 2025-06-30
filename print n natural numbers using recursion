@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int printn(int n)
+{
+	if(n==0)
+	return 0;
+	printn(n-1);
+	cout<<n<<" ";
+}
+int main()
+{
+	int n;
+	cout<<"Enter the number "<<endl;
+	cin>>n;
+	
+	cout<<"Natural number from 1 to "<<n<<" are :\n";
+	printn(n);
+		
+	return 0;
+}
