@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+
+void insert(int a[][100],int m,int n)
+{
+	int i,j;
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<"element ["<<i<<"]["<<j<<"] is ";
+			cin>>a[i][j];
+		}
+	}
+}
+
+void display(int a[][100],int m,int n)
+{
+	int i,j;
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+		}
+		cout<<endl;
+}
+}
+void spiralMatrix(int a[][100],int m,int n)
+{
+	int i;
+	int top =0,bottom = m-1;
+	int left = 0,right = n-1;
+    
+	while(top<=bottom && left<=right)
+	{
+		for(i=left;i<=right;i++)
+		{
+			cout<<a[top][i]<<" ";
+		}
+		top++;
+		for(i=top;i<=bottom;i++)
+		{
+			cout<<a[i][right]<<" ";
+		}
+		right--;
+		
+		if(top<=bottom)
+		{
+			for(i=right;i>=left;i--)
+			{
+				cout<<a[bottom][i]<<" ";
+			}
+		}
+		bottom--;
+		
+		if(left<=right)
+		{
+			for(i=bottom;i>=top;i--)
+			{
+				cout<<a[i][left]<<" ";
+			}
+		}
+		left++;
+	}	
+		
+}
+int main()
+{
+	int m,n;
+	cout<<"Enter the row and column of matrix :"<<endl;
+	cin>>m>>n;
+	
+	int a[100][100];
+	cout<<"Enter the elements of matrix :"<<endl;
+	insert(a,m,n);
+	
+	cout<<"The matrix is :"<<endl;
+	display(a,m,n);
+	
+	spiralMatrix(a,m,n);
+	return 0;
+	
+}
