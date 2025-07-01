@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+void reverseString(string &str,int index,int n)
+{
+	if(index >= n)
+		return;
+	
+	swap(str[index],str[n]);
+	
+	reverseString(str,index+1,n-1);	 
+}
+int main()
+{
+	string str;
+	
+	cout<<"Enter a string :"<<endl;
+	getline(cin,str);
+	
+	reverseString(str,0,str.length()-1);
+	
+	cout<<"Reversed string is :"<<str<<endl;
+	
+	return 0;
+	
+	
+}
