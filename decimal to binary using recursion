@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+
+void binaryNumber(int num1)
+{
+	if(num1 == 0)
+	return;
+	
+	
+	binaryNumber(num1/2);
+	
+	cout<<num1 % 2;
+	
+}
+int main()
+{
+	int num1;
+	cout<<"Enter the number :"<<endl;
+	cin>>num1;
+	
+	if(num1 == 0)
+		cout<<"0";
+	else 	
+	binaryNumber(num1);
+	
+	cout<<endl;
+	
+	return 0;
+}
