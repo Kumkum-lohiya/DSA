@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int PowerOfNumber(int num,int pow)
+{
+	if(pow==0)
+	 return 1;
+	
+	int result = num * PowerOfNumber(num,pow-1);
+	return result;
+}
+int main()
+{
+	int num,pow;
+	cout<<"Input the base value :";
+	cin>>num;
+	cout<<"Input the value of power :";
+	cin>>pow;
+	
+	cout<<PowerOfNumber(num,pow);
+}
