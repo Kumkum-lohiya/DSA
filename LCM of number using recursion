@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int LCMofNumber(int num1,int num2,int multiple)
+{
+    if(multiple % num1 == 0 && multiple%num2 == 0)
+    	return multiple;
+    return LCMofNumber(num1,num2,multiple+1);	
+}
+int main()
+{
+	int num1,num2;
+	cout<<"Enter the 1st Number :"<<endl;
+	cin>>num1;
+	cout<<"Enter the 2nd Number :"<<endl;
+	cin>>num2;
+	
+	int maxval = (num1>num2) ? num1 :num2;
+	cout<<"LCM is :"<<LCMofNumber(num1,num2,maxval);
+	return 0;
+}
