@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+void reverseString(string &str,int start,int end)
+{
+	if(start >=end)
+	return;
+	
+	swap(str[start],str[end]);
+	
+	reverseString(str,start+1,end-1);
+}
+void palindrom(string original)
+{
+	string reversed = original;
+	reverseString(reversed,0,reversed.length()-1);
+	if(original == reversed)
+		cout<<"This is a palindrome "<<endl;
+	else cout<<"This is not a palindrome "<<endl;	
+}
+
+int main()
+{
+	string str;
+	cout<<"Enter the string :"<<endl;
+	getline(cin,str);
+	
+	palindrom(str);
+	
+	return 0;
+}
