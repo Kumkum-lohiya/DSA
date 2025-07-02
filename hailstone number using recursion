@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+int hailstone(int n,int count)
+{
+	cout<<n<<" ";
+	if(n == 1)
+	return count;
+	
+	if(n%2 == 0)
+	{
+		return hailstone(n/2,count+1);
+	}
+	else 
+	{
+		return hailstone(3*n+1,count+1);
+	}
+	
+	
+}
+
+int main()
+{
+	int n;
+	cout<<"Enter the number :"<<endl;
+	cin>>n;
+	
+	
+	int count = hailstone(n,0);
+		
+	
+	cout<<"\nThe total hailstone numbers are :"<<count+1<<endl;
+	return 0;
+}
