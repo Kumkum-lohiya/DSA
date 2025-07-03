@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	string str;
+	int countalpha =0,countdigit =0,countspecial= 0;
+	cout<<"Enter the string :";
+	getline(cin,str);
+	
+	for(int i=0;i<str.length();i++)
+	{
+		if((str[i] >=65 && str[i]<=90) || (str[i] >=97 && str[i] <=122))
+		{
+			countalpha++;
+		}
+		else if(str[i] >=48 && str[i]<=57 )
+		{
+			countdigit++;
+		}
+        else{
+        	countspecial++;
+		}
+	}
+	
+	cout<<"\nNumber of Alphabets in the string is "<<countalpha<<endl;
+	cout<<"\nNumber of digits in the string is "<<countdigit<<endl;
+	cout<<"\nNumber of special character in the string is "<<countspecial<<endl;
+}
