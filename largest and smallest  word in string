@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+int main() {
+    string input;
+    cout << "Input the string: ";
+    getline(cin, input);
+
+    string word, smallest, largest;
+    stringstream ss(input);
+
+    bool firstWord = true;
+
+    while (ss >> word) {
+        if (firstWord) {
+            smallest = word;
+            largest = word;
+            firstWord = false;
+        } else {
+            if (word.length() < smallest.length()) {
+                smallest = word;
+            }
+            if (word.length() > largest.length()) {
+                largest = word;
+            }
+        }
+    }
+
+    cout << "Smallest word: " << smallest << endl;
+    cout << "Largest word: " << largest << endl;
+
+    return 0;
+}
