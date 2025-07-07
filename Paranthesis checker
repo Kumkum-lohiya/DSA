@@ -1,0 +1,57 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+    string str;
+    char stack[100];  // Use char array for stack
+    char ch1, ch2;
+    int i, top = -1;
+
+    cout << "Enter the Expression: ";
+    getline(cin, str);
+
+    for(i = 0; i < str.length(); i++)
+    {
+        if(str[i] == '(' || str[i] == '{' || str[i] == '[')
+        {
+            stack[++top] = str[i];  // Push to stack
+        }
+        else if(str[i] == ')' || str[i] == '}' || str[i] == ']')
+        {
+            if(top == -1)
+            {
+                cout << "\nInvalid Expression\n";
+                return 0;
+            }
+
+            ch1 = str[i];
+            ch2 = stack[top--];  // Pop from stack
+
+            switch(ch2)
+            {
+                case '(' : ch2 = ')'; break;
+                case '{' : ch2 = '}'; break;
+                case '[' : ch2 = ']'; break;
+            }
+
+            if(ch1 != ch2)
+            {
+                cout << "\nInvalid Expression\n";
+                return 0;
+            }
+        }
+    }
+
+    if(top == -1)
+    {
+        cout << "\nCorrect Expression\n";
+    }
+    else
+    {
+        cout << "\nInvalid Expression\n";
+    }
+
+    return 0;
+}
