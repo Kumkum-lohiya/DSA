@@ -1,0 +1,106 @@
+#include<iostream>
+#include<math.h>
+#include<climits>
+using namespace std;
+
+
+#define max 100
+struct stack{
+	
+	int arr[max];
+	int top =-1;
+	
+	bool isEmpty()
+	{
+		return top == -1;
+	}
+	
+	bool isFull()
+	{
+		return top == max -1;
+	}
+	
+	void push(int x){
+		if(!isFull())  arr[++top] = x;
+	}
+	 
+	int pop()
+	 {
+	 	if(!isEmpty()) return arr[top--];
+	 	return INT_MIN;
+	 }
+	 
+	int peek()
+	 {
+	 	if(!isEmpty()) return arr[top];
+	 	return INT_MIN;
+	 }
+};
+
+void moveDisk(char fromRod,char toRod,int disk)
+{
+	cout<<"Move disk "<<disk<<" from "<<fromRod<<" to "<<toRod<<endl;
+}
+
+void moveBetween(stack &src,stack &dest,char s,char d)
+{
+	int top1 = src.pop();
+	int top2 = dest.pop();
+	
+	if(top1 == INT_MIN)
+	{
+		src.push(top2);
+		moveDisk(d,s,top2);
+	} else if(top2 == INT_MIN)
+	{
+		dest.push(top1);
+		moveDisk(s,d,top1);
+	}
+	else if(top1>top2)
+	{
+		src.push(top1);
+		src.push(top2);
+		moveDisk(d,s,top2);
+	}
+	else {
+		dest.push(top2);
+		dest.push(top1);
+		moveDisk(s,d,top1);
+	}
+	
+}
+
+void towerOfHanoi(int n)
+{
+	stack src,aux,dest;
+	char s = 'A', a ='B',d='C';
+	
+	if(n%2 == 0)
+		swap(d,a);
+	
+	for(int i=n; i >= 1;i--)
+		src.push(i);
+
+    int totalMoves = pow(2,n)-1;
+	
+	for(int i = 1;i<=totalMoves;i++)
+	{
+		if(i%3 == 1)
+			moveBetween(src,dest,s,d);
+		else if(i%3 ==2)
+			moveBetween(src,aux,s,a);
+		else if(i%3 == 0)
+			moveBetween(aux,dest,a,d);		
+		}	
+}
+
+int main()
+{
+	int n;
+	cout<<"Enter number of disks :";
+	cin>>n;
+	
+	towerOfHanoi(n);
+	return 0;
+	
+}
