@@ -1,0 +1,87 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int precedence(char op)
+{
+    if(op == '^') return 3;
+    if(op == '*' || op == '/') return 2;
+    if(op == '+' || op == '-') return 1;
+    return 0;
+}
+
+int main()
+{
+    string str;
+    char stack[100], p[100], reverse[100];
+    int top = -1, j = -1, k = -1;
+
+    cout << "Enter the Infix Expression: ";
+    getline(cin, str);
+
+    // Step 1: Reverse the expression and swap brackets
+    for(int i = str.length() - 1; i >= 0; i--)
+    {
+        if(str[i] == ')') reverse[++j] = '(';
+        else if(str[i] == ']') reverse[++j] = '[';
+        else if(str[i] == '}') reverse[++j] = '{';
+        else if(str[i] == '(') reverse[++j] = ')';
+        else if(str[i] == '[') reverse[++j] = ']';
+        else if(str[i] == '{') reverse[++j] = '}';
+        else reverse[++j] = str[i];
+    }
+
+    // Step 2: Convert reversed expression to postfix
+    for(int i = 0; i <= j; i++)
+    {
+        char ch = reverse[i];
+
+        // Operand
+        if((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9'))
+        {
+            p[++k] = ch;
+        }
+
+        // Opening bracket
+        else if(ch == '(')
+        {
+            stack[++top] = ch;
+        }
+
+        // Closing bracket
+        else if(ch == ')')
+        {
+            while(top != -1 && stack[top] != '(')
+            {
+                p[++k] = stack[top--];
+            }
+            if(top != -1) top--; // Pop the '('
+        }
+
+        // Operator
+        else if(ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')
+        {
+            while(top != -1 && precedence(stack[top]) >= precedence(ch))
+            {
+                p[++k] = stack[top--];
+            }
+            stack[++top] = ch;
+        }
+    }
+
+    // Step 3: Pop remaining stack
+    while(top != -1)
+    {
+        p[++k] = stack[top--];
+    }
+
+    // Step 4: Reverse the postfix to get prefix
+    cout << "Prefix Expression: ";
+    for(int i = k; i >= 0; i--)
+    {
+        cout << p[i];
+    }
+    cout << endl;
+
+    return 0;
+}
