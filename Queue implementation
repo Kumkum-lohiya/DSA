@@ -1,0 +1,95 @@
+#include<iostream>
+using namespace std;
+
+#define size 100
+class Queue{
+    int rear,front;
+    int a[size];
+    
+    public:
+    	Queue()
+    	{
+    		rear = -1;
+    		front = 0;
+		}
+		
+	void Enqueue(int x){
+		if(rear == size -1)
+		{
+			cout<<"Queue Overflow \n";
+		}
+		else a[++rear] = x;
+	}	
+	
+	void Dequeue()
+	{
+		if(front>rear)
+		{
+			cout<<"Queue Underflow\n";
+		}
+		else {
+			
+			cout<<"Poped element is "<<a[front]<<endl;
+			front++;
+		}
+	}
+	
+	void peek()
+	{
+		if(front>rear)
+		{
+			cout<<"Underflow\n";
+		}
+		else cout<<"Peeked element is "<<a[front]<<endl;
+	}
+	
+	void display()
+	{
+	    if(front>rear)
+		{
+			cout<<"Underflow\n";
+		}
+		
+		for(int i=front;i<=rear;i++)
+		{
+			cout<<a[i]<<" ";
+		}
+	}
+	
+	
+	
+};
+
+int main()
+{
+	Queue q;
+	int value,ch;
+	
+	do{
+		cout<<"\nChoose the option :"<<endl;
+		cout<<"1.Enqueue\n2.Dequeue\n3.Peek\n4.Display\n5.Exit\n";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1 :cout<<"Enter the value :"<<endl;
+			        cin>>value;
+			        q.Enqueue(value);
+			        break;
+			case 2 :q.Dequeue();
+			        break;
+			case 3 :q.peek();
+			        break;        
+			case 4 :q.display();
+			        break;
+			case 5 :cout<<"Exiting the program !"<<endl;
+			        break;
+			default:cout<<"Invalid operation !"<<endl;
+			        break;				             
+		}
+	}
+	while(ch != 5);
+	
+	return 0;
+	
+	
+}
