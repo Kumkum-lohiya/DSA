@@ -1,0 +1,123 @@
+#include<iostream>
+using namespace std;
+#define size 100
+class Queue{
+	int front,rear;
+	int a[size];
+	
+	public:
+		Queue()
+		{
+			front =0;
+			rear =-1;
+		}
+		
+	void EnqueueFront(int x)
+	{
+			if(rear == size -1)
+		{
+			cout<<"Queue Overflow \n";
+		}
+		for(int i=rear;i>=front;i--)
+		{
+			a[i+1] = a[i];
+			
+		}
+		a[front] = x;
+		rear++;
+		}	
+	void EnqueueRear(int x){
+		if(rear == size -1)
+		{
+			cout<<"Queue Overflow \n";
+		}
+		else a[++rear] = x;
+	}	
+	
+	void Dequeue()
+	{
+		if(rear == -1 || front == size)
+		{
+			cout<<"Queue Underflow\n";
+		}
+		else {
+			cout<<"Popped element is :"<<a[front]<<endl;
+			for(int i= front;i<=rear;i++)
+			{
+				a[i] = a[i+1];
+			}
+			rear--;
+		}
+	}
+	
+	
+	
+	void peek()
+	{
+		if(front>rear)
+		{
+			cout<<"Underflow\n";
+		}
+		else cout<<"Peeked element is "<<a[front]<<endl;
+	}
+	
+	void display()
+	{
+	    if(front>rear)
+		{
+			cout<<"Underflow\n";
+		}
+		
+		for(int i=front;i<=rear;i++)
+		{
+			cout<<a[i]<<" ";
+		}
+	}
+	
+};
+int main(){
+Queue q;
+	int value,ch;
+	string str;
+	
+	do{
+		cout<<"\nChoose the option :"<<endl;
+		cout<<"1.Enqueue\n2.Dequeue\n3.Peek\n4.Display\n5.Exit\n";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1 :cout<<"Where you want to insert the element :\n1.front\n2.rear\n";
+			        cin>>str;
+			        if(str == "front")
+			        {
+			        	cout<<"Enter the value :"<<endl;
+			            cin>>value;
+			        	q.EnqueueFront(value);
+					}
+					else if(str == "rear"){
+						cout<<"Enter the value :"<<endl;
+			            cin>>value;
+						q.EnqueueRear(value);
+					}
+					else {
+						cout<<"Invalid Input ! please enter 'front' or 'rear'.\n";
+					}
+			        break;
+			case 2 :q.Dequeue();
+			        break;
+			case 3 :q.peek();
+			        break;        
+			case 4 :q.display();
+			        break;
+			case 5 :cout<<"Exiting the program !"<<endl;
+			        break;
+			default:cout<<"Invalid operation !"<<endl;
+			        break;				             
+		}
+	}
+	while(ch != 5);
+	
+	return 0;
+	
+	
+}
