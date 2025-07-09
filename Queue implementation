@@ -23,14 +23,17 @@ class Queue{
 	
 	void Dequeue()
 	{
-		if(front>rear)
+		if(rear == -1 || front == size)
 		{
 			cout<<"Queue Underflow\n";
 		}
 		else {
-			
-			cout<<"Poped element is "<<a[front]<<endl;
-			front++;
+			cout<<"Popped element is :"<<a[front]<<endl;
+			for(int i= front;i<=rear;i++)
+			{
+				a[i] = a[i+1];
+			}
+			rear--;
 		}
 	}
 	
