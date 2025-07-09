@@ -1,117 +1,118 @@
 #include<iostream>
 using namespace std;
-#define size 100
-class PriorityQueue{
-	int data[size];
-	int count;
-	
-	public:
-	  	PriorityQueue()
-	  	{
-	  		count = 0;
-		  }
-		 
-		 void enqueue(int x){
-		 	if(count == size)
-		 	{
-		 		cout<<"Queue Overflow !\n";
-		 		return;
-			 }
-			 int top = count-1;
-			 
-			 while(top>=0 && data[top] < x)
-			 {
-			 	data[top+1] = data[top];
-			 	top--;
-			 }
-			 
-			 data[top+1] = x;
-			 count++;
-		}
-		
-		void dequeue()
-		{
-			if(isEmpty())
-			{
-				cout<<"Queue Underflow \n";
-				return;
-			}
-			
-			cout<<"Dequeued element :"<<data[0]<<endl;
-			
-			
-			for(int i=1;i<count;i++)
-			{
-				data[i-1] = data[i];
-			}
-			count--;
-		 } 
-		 bool isEmpty()
-		 {
-		 	return count ==0;
-		 }
-		 int peek()
-		 {
-		 	if(isEmpty())
-		 	{
-		 		cout<<"Queue Underflow !\n";
-		 		return -1;
-			 }
-			 cout<<"The peeked element is :"<<data[0];
-			 
-		 }
-		 
-		 void display()
-		 {
-		 	if(isEmpty())
-		 	{
-		 		cout<<"Queue is Empty\n";
-		 		return;
-			 }
-			 cout<<"Priority Queue :";
-			 
-			 for(int i=0;i<count;i++)
-			 {
-			 	cout<<data[i]<<" ";
-			 }
-			 cout<<endl;
-		 }
+
+#define SIZE 100
+
+class PriorityQueue {
+    int pq[SIZE][2]; // [value][priority]
+    int count;
+
+public:
+    PriorityQueue() {
+        count = 0;
+    }
+
+    void enqueue(int value, int priority) {
+        if (count == SIZE) {
+            cout << "Queue Overflow!\n";
+            return;
+        }
+
+        // Insert and sort by priority (lower number = higher priority)
+        int i = count - 1;
+        while (i >= 0 && pq[i][1] > priority) {
+            pq[i + 1][0] = pq[i][0];
+            pq[i + 1][1] = pq[i][1];
+            i--;
+        }
+
+        pq[i + 1][0] = value;
+        pq[i + 1][1] = priority;
+        count++;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue Underflow\n";
+            return;
+        }
+
+        cout << "Dequeued element: " << pq[0][0] << " (Priority: " << pq[0][1] << ")\n";
+
+        // Shift all elements left
+        for (int i = 1; i < count; i++) {
+            pq[i - 1][0] = pq[i][0];
+            pq[i - 1][1] = pq[i][1];
+        }
+
+        count--;
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue Underflow!\n";
+            return -1;
+        }
+        return pq[0][0];
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty.\n";
+            return;
+        }
+
+        cout << "Priority Queue [Value | Priority]:\n";
+        for (int i = 0; i < count; i++) {
+            cout << pq[i][0] << " | " << pq[i][1] << endl;
+        }
+    }
+
+    bool isEmpty() {
+        return count == 0;
+    }
 };
 
-int main()
-{
-	 PriorityQueue pq;
-	int value,choice;
-	
-	do {
+int main() {
+    PriorityQueue pq;
+    int choice, value, priority;
+
+    do {
         cout << "\n1. Enqueue\n2. Dequeue\n3. Peek\n4. Display\n5. Exit\n";
         cout << "Enter choice: ";
         cin >> choice;
 
         switch (choice) {
             case 1:
-                cout << "Enter value to insert: ";
+                cout << "Enter value: ";
                 cin >> value;
-                pq.enqueue(value);
+                cout << "Enter priority (lower number = higher priority): ";
+                cin >> priority;
+                pq.enqueue(value, priority);
                 break;
+
             case 2:
                 pq.dequeue();
                 break;
+
             case 3:
-                cout << "Top priority element: " << pq.peek() << endl;
+                value = pq.peek();
+                if (value != -1)
+                    cout << "Top priority element: " << value << endl;
                 break;
+
             case 4:
                 pq.display();
                 break;
+
             case 5:
                 cout << "Exiting...\n";
                 break;
+
             default:
                 cout << "Invalid choice!\n";
         }
-
     } while (choice != 5);
 
     return 0;
-
 }
