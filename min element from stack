@@ -1,0 +1,79 @@
+#include<iostream>
+using namespace std;
+
+#define MAX 1000
+
+class MinStack {
+    int mainStack[MAX];
+    int minStack[MAX];
+    int topIndex;
+
+public:
+    MinStack() {
+        topIndex = -1;
+    }
+
+    bool isEmpty() {
+        return topIndex == -1;
+    }
+
+    bool isFull() {
+        return topIndex == MAX - 1;
+    }
+
+    void push(int x) {
+        if (isFull()) {
+            cout << "Stack Overflow\n";
+            return;
+        }
+
+        mainStack[++topIndex] = x;
+
+        if (topIndex == 0) {
+            minStack[topIndex] = x;
+        } else {
+            minStack[topIndex] = min(x, minStack[topIndex - 1]);
+        }
+    }
+
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow\n";
+            return;
+        }
+        topIndex--;
+    }
+
+    int top() {
+        if (isEmpty()) {
+            cout << "Stack is empty\n";
+            return -1;
+        }
+        return mainStack[topIndex];
+    }
+
+    int getMin() {
+        if (isEmpty()) {
+            cout << "Stack is empty\n";
+            return -1;
+        }
+        return minStack[topIndex];
+    }
+};
+
+int main() {
+    MinStack s;
+    s.push(5);
+    s.push(3);
+    s.push(7);
+    s.push(2);
+
+    cout << "Top element: " << s.top() << endl;        // 2
+    cout << "Minimum element: " << s.getMin() << endl; // 2
+
+    s.pop(); // remove 2
+    cout << "Top element: " << s.top() << endl;        // 7
+    cout << "Minimum element: " << s.getMin() << endl; // 3
+
+    return 0;
+}
