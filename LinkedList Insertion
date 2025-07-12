@@ -1,0 +1,124 @@
+#include<iostream>
+using namespace std;
+class Node{
+  public:
+	int data;
+	Node * next;
+	
+	Node(int value)
+	{
+		data = value;
+		next = nullptr; 
+		}	
+};
+
+void InsertAtFront(Node*&start,int value)
+{
+	Node * newNode = new Node(value);
+	if(start == nullptr)
+	{
+		start = newNode;
+	}
+	else{
+			newNode->next = start;
+			start = newNode;
+	}
+
+	
+}
+void InsertAtEnd(Node*&start,int value)
+{
+	Node*temp = nullptr;
+	Node * newNode = new Node(value);
+	temp = start;
+	if(start == nullptr)
+	{
+		start = newNode;
+	}
+	else {
+		while(temp->next != nullptr)
+		{
+			temp = temp->next;	
+		}
+		temp->next = newNode;
+	}
+	
+}
+void InsertAtMiddle(Node* &start,int value)
+{
+	int info;
+	Node * temp = nullptr;
+	Node * newNode = new Node(value);
+	
+	cout<<"Enter the information after which you want to insert the node :";
+	cin>>info;
+	
+	temp = start;
+	while(temp->next != nullptr )
+	{
+		if(temp->data == info)
+		{
+			break;
+		}
+		else temp =temp->next;
+	}
+
+	if(temp->next == start && temp->data != info)
+	{
+		cout<<"Data not found \n";
+	}
+	newNode->next =temp->next;
+	temp->next = newNode;
+	cout<<"Node is Inserted \n";
+	
+	
+	
+}
+void display(Node*start)
+{
+	Node * temp = start;
+	while(temp!= nullptr)
+	{
+		cout<<temp->data<<" -> ";
+		temp = temp->next;
+	}
+	cout<<"NULL\n";
+}
+int main()
+{
+	Node* start = nullptr;
+	int value,Choice;
+	
+	do{ 
+	  cout<<"\n1.Insert at Front\n2.Insert at End\n3.Insert at Middle\n4.Display\n5.Exit...\nEnter your Choice\n";
+	  cin>>Choice;
+	  
+	  switch(Choice)
+	  {
+	  	case 1 :
+	  		cout<<"Enter the value :";
+	  		cin>>value;
+	  		InsertAtFront(start,value);
+	  		break;
+	  	case 2 :
+		  	cout<<"Enter the value :";
+			cin>>value;
+			InsertAtEnd(start,value);
+			break;
+		case 3 :
+			cout<<"Enter the value :";
+			cin>>value;
+			InsertAtMiddle(start,value);
+			break;		
+	  	case 4 :
+		  	display(start);
+		    break;
+		case 5 :	
+			cout<<"Exiting the program :"<<endl;
+			break;
+		default :cout<<"Invalid Choice !"<<endl;			 	
+	  }
+		
+	}
+	while(Choice != 5);
+}
